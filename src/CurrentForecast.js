@@ -5,17 +5,23 @@ export default function CurrentForecast() {
     <div>
       <div class="row" id="current-forecast">
         <div class="col-6">
-          <h1>City</h1>
-          <p id="date">Day and time</p>
-          <h2>
+          
+          <ul>
+            <li>City</li>
+          <li id="date">Day and time</li>
+          <li>
             <span id="temp"> current temp </span>
-          </h2>
-          <p id="cloud-condition">cloud condition</p>
+          </li>
+          <li id="cloud-condition">cloud condition</li>
+          </ul>
         </div>
         <div class="col-6">
-          <img src="" alt="cloudy" id="icon" />
-          <p id="humidity">humidity</p>
-          <p id="wind">wind</p>
+          <ul>
+            <li><img src="" alt="cloudy" id="icon" /></li>
+          <li id="humidity">humidity</li>
+          <li id="wind">wind</li>
+          </ul>
+          
         </div>
       </div>
     </div>
