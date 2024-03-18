@@ -11,12 +11,14 @@ import './style.css';
 function App() {
   return (
     <div className="App">
+    <div className="container">
       <Searchbar />
       <CurrentForecast />
       <WeeklyForecast />
       <Footer />
     </div>
-  );
+ </div> 
+ );
 }
 
 export default App;
