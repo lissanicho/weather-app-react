@@ -7,7 +7,7 @@ export default function CurrentForecast() {
         <div class="col-6">
           
           <ul>
-            <li>City</li>
+            <li id="cityName">City</li>
           <li id="date">Day and time</li>
           <li>
             <span id="temp"> current temp </span>

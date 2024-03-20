@@ -9,8 +9,8 @@ export default function App() {
             <input
               type="text"
               placeholder="Enter city"
-              autofocus="on"
-              autocomplete="off"
+              autoFocus="on"
+              autoComplete="off"
               id="search-text-input"
             />
             <input type="submit" value="search" />

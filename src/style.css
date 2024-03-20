@@ -13,6 +13,9 @@ a {
     position: relative;
     top: -12px;
 }
+ul {
+    list-style: none;
+}
 
 .container {
     border-style: solid;
@@ -33,4 +36,8 @@ a {
     background-color: #ff9933;
     border-radius: 15px;
     padding: 5px;
+}
+
+#cityName {
+    font-size: 42px;
 }
