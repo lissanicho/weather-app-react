@@ -13,7 +13,7 @@ function App() {
     <div className="App">
     <div className="container">
       <Searchbar />
-      <CurrentForecast />
+      <CurrentForecast defaultCity="Wellington"/>
       <WeeklyForecast />
       <Footer />
     </div>
