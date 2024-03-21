@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import DisplayDate from "./DisplayDate";
+import TemperatureConversion from "./TemperatureConversion";
 
 
 export default function CurrentForecast(props) {
@@ -64,9 +65,8 @@ function searchCity(event) {
           <ul>
             <li className="cityName">{weatherData.city}</li>
           <li className="date"><DisplayDate date={weatherData.date}/></li>
-          <li>
-            <span className="temp"> {Math.round(weatherData.temperature)}°C</span>
-          </li>
+          <div><TemperatureConversion celsius={weatherData.temperature}/></div>
+          
           <li className="cloud-condition">{weatherData.description}</li>
           </ul>
         </div>
