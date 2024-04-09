@@ -2,15 +2,17 @@ import React, {useState} from "react";
 import axios from "axios";
 import DisplayDate from "./DisplayDate";
 import TemperatureConversion from "./TemperatureConversion";
+import WeeklyForecast from "./WeeklyForecast";
 
 
 export default function CurrentForecast(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ready:false});
+  
   function handleResponse(response){
-    console.log (response.data);
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       city: response.data.name,
       wind: response.data.wind.speed,
@@ -27,17 +29,19 @@ function handleSubmit(event){
   search();
 }
 
-function search(){
-  let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17ad6e67aa629189f73b053634668b20&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
-
-  return "Loading";}
-
 function searchCity(event) {
   setCity(event.target.value);
 }
 
-  if (weatherData.ready) {return (
+function search(){
+  let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17ad6e67aa629189f73b053634668b20&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+}
+
+
+
+  if (weatherData.ready) {
+    return (
     <div className="CurrentForecast">
       <div className="Searchbar">
       <div class="row" id="button-row ">
@@ -54,9 +58,7 @@ function searchCity(event) {
             <input type="submit" value="search" />
           </form>
         </div>
-        <div class="col-8">
-          <button id="current-location">My Location</button>
-        </div>
+        
       </div>
     </div>
       <div class="row" id="current-forecast">
@@ -76,14 +78,16 @@ function searchCity(event) {
           <li className="humidity">{weatherData.humidity}% humidity</li>
           <li className="wind">Wind {Math.round(weatherData.wind)}km/h</li>
           </ul>
+
+          
           
         </div>
       </div>
+      <WeeklyForecast coordinates={weatherData.coordinates} />
     </div>
-  );}
-  
-
-  else{
+  );
+}
+  else {
   search();
   return "Currently loading";
   

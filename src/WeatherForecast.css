@@ -1,0 +1,8 @@
+.forecast-day {
+    text-align: center;
+}
+
+.minimum-temperature {
+    opacity:0.6;
+    margin-left: 5px;
+}
