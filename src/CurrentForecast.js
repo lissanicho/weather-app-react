@@ -7,7 +7,7 @@ import TemperatureConversion from "./TemperatureConversion";
 export default function CurrentForecast(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ready:false});
-  function handleResponse(response){
+  function handleTempResponse(response){
     console.log (response.data);
     setWeatherData({
       ready: true,
@@ -29,7 +29,7 @@ function handleSubmit(event){
 
 function search(){
   let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17ad6e67aa629189f73b053634668b20&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
+  axios.get(apiUrl).then(handleTempResponse);
 
   return "Loading";}
 
