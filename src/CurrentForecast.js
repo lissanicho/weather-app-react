@@ -24,6 +24,7 @@ export default function CurrentForecast(props) {
     
   }
 
+
 function handleSubmit(event){
   event.preventDefault();
   search();
@@ -61,7 +62,7 @@ function search(){
           
         </div>
         <div class="col-8">
-          <button id="current-location">My Location</button>
+          
         </div>
       </div>
     </div>
