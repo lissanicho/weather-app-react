@@ -4,14 +4,16 @@ import "./WeatherForecast.css";
 import axios from "axios";
 
 
+
 export default function WeeklyForecast(props) {
   function handleResponse (response) {
     console.log (response.data);
   }
-
+  console.log(props.coordinates);
   
-  let latitude=-33.86785000;
-  let longitude=151.20732000;
+  let longitude=props.coordinates.lon;
+  let latitude=-props.coordinates.lat;
+  
   let apiUrl=`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=2980ff43226d67e53abfcdb6d457dcc8`;
 
   axios.get(apiUrl).then(handleResponse);

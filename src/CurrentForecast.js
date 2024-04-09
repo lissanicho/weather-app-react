@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import DisplayDate from "./DisplayDate";
 import TemperatureConversion from "./TemperatureConversion";
+import WeeklyForecast from "./WeeklyForecast";
 
 
 export default function CurrentForecast(props) {
+  const [weatherData, setWeatherData] = useState({ ready:false });
   const [city, setCity] = useState(props.defaultCity);
-  const [weatherData, setWeatherData] = useState({ready:false});
+  
   function handleTempResponse(response){
-    console.log (response.data);
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       city: response.data.name,
       wind: response.data.wind.speed,
@@ -27,17 +29,20 @@ function handleSubmit(event){
   search();
 }
 
-function search(){
-  let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17ad6e67aa629189f73b053634668b20&units=metric`;
-  axios.get(apiUrl).then(handleTempResponse);
-
-  return "Loading";}
-
 function searchCity(event) {
   setCity(event.target.value);
 }
 
-  if (weatherData.ready) {return (
+function search(){
+  let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=17ad6e67aa629189f73b053634668b20&units=metric`;
+  axios.get(apiUrl).then(handleTempResponse);
+
+}
+
+
+
+  if (weatherData.ready) {
+    return (
     <div className="CurrentForecast">
       <div className="Searchbar">
       <div class="row" id="button-row ">
@@ -53,6 +58,7 @@ function searchCity(event) {
             />
             <input type="submit" value="search" />
           </form>
+          
         </div>
         <div class="col-8">
           <button id="current-location">My Location</button>
@@ -66,7 +72,7 @@ function searchCity(event) {
             <li className="cityName">{weatherData.city}</li>
           <li className="date"><DisplayDate date={weatherData.date}/></li>
           <div><TemperatureConversion celsius={weatherData.temperature}/></div>
-          
+          <WeeklyForecast coordinates={weatherData.coordinates} />
           <li className="cloud-condition">{weatherData.description}</li>
           </ul>
         </div>
@@ -88,4 +94,5 @@ function searchCity(event) {
   return "Currently loading";
   
   }
+  
 }
